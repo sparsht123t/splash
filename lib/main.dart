@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:splash_screen_gofoodman_app/screens/fooditems.dart';
+
 import 'package:splash_screen_gofoodman_app/screens/text.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    // Size _size = MediaQuery.of(context).size;
+
     return MaterialApp(
       theme: ThemeData(
         fontFamily: 'Modeco',
@@ -94,21 +93,6 @@ class _InitialPageState extends State<InitialPage>
       end: 1.0,
     ).animate(_animationLogoCurve as Animation<double>);
 
-    // _Containercurve = CurvedAnimation(
-    //     parent: _animationController as Animation<double>,
-    //     curve: Curves.decelerate);
-
-    // _animationContainerSqueeze = Tween<double>(
-    //   begin: 20.0,
-    //   end: 30.0,
-    // ).animate(_Containercurve as Animation<double>);
-
-    // _animationLogoIn = Tween(
-    //   begin: 5.0,
-    //   end: 1.0,
-    // ).animate(CurvedAnimation(
-    //     parent: _animationController as Animation<double>,
-    //     curve: const Interval(0.7, 1.0, curve: Curves.decelerate)));
 
     _animationController!.forward();
     super.initState();
@@ -122,111 +106,108 @@ class _InitialPageState extends State<InitialPage>
 
   @override
   Widget build(BuildContext context) {
-    Color myHexColor = const Color(0xFF00CF7BA);
+    Color myHexColor = const Color(0xff00cf7ba);
     Size _size = MediaQuery.of(context).size;
-    var _myWidth = MediaQuery.of(context).size.width;
-    var _myHeight = MediaQuery.of(context).size.height;
-    return GestureDetector(
-      onTap: () {
-        _animationController!.forward(from: 0.0);
-        setState(() {
-          _myWidth = MediaQuery.of(context).size.width / 2;
-          _myHeight = MediaQuery.of(context).size.height / 2;
-        });
-      },
-      child: AnimatedBuilder(
-        animation: _animationController as Listenable,
-        builder: (BuildContext context, Widget? child) {
-          return Scaffold(
-            backgroundColor: Colors.white,
-            body: Container(
-              color: Colors.white,
-              child: Container(
-                color: myHexColor,
-                child: Stack(
-                  children: [
-                    Positioned(
-                      top: _size.height / 3,
-                      left: 10,
-                      child: Transform.translate(
-                        offset:
-                            Offset(0.0, 10 * (1.0 - _animationImageUp!.value)),
-                        child: Image.asset('assets/pizza-75.png'),
-                      ),
+    // var _myWidth = MediaQuery.of(context).size.width;
+    // var _myHeight = MediaQuery.of(context).size.height;
+    return
+        AnimatedBuilder(
+      animation: _animationController as Listenable,
+      builder: (BuildContext context, Widget? child) {
+        return Scaffold(
+          backgroundColor: Colors.white,
+          body: Container(
+            color: Colors.white,
+            child: Container(
+              color: myHexColor,
+              child: Stack(
+                children: [
+                  Positioned(
+                    top: _size.height / 3,
+                    left: 10,
+                    child: Transform.translate(
+                      offset:
+                          Offset(0.0, 10 * (1.0 - _animationImageUp!.value)),
+                      child: Image.asset('assets/pizza-75.png'),
                     ),
+                  ),
 
-                    Positioned(
-                      top: _size.height / 1.6,
-                      left: 0.1,
-                      child: Transform.translate(
-                        offset:
-                            Offset(10.0, 10 * (1.0 - _animationImageUp!.value)),
-                        child: Image.asset('assets/popcorn-75.png'),
-                      ),
+                  Positioned(
+                    top: _size.height / 1.6,
+                    left: 0.1,
+                    child: Transform.translate(
+                      offset:
+                          Offset(10.0, 10 * (1.0 - _animationImageUp!.value)),
+                      child: Image.asset('assets/popcorn-75.png'),
                     ),
-                    // top right
-                    Positioned(
-                      top: _size.height / 2.5,
-                      left: _size.width / 1.5,
-                      child: Transform.translate(
-                        offset:
-                            Offset(10.0, 10 * (1.0 - _animationImageUp!.value)),
-                        child: Image.asset('assets/sandwich-75.png'),
-                      ),
+                  ),
+                  // top right
+                  Positioned(
+                    top: _size.height / 2.5,
+                    left: _size.width / 1.5,
+                    child: Transform.translate(
+                      offset:
+                          Offset(10.0, 10 * (1.0 - _animationImageUp!.value)),
+                      child: Image.asset('assets/sandwich-75.png'),
                     ),
-                    Positioned(
-                      top: _size.height / 1.1,
-                      left: _size.width / 1.5,
-                      child: Transform.translate(
-                        offset:
-                            Offset(10.0, 10 * (1.0 - _animationImageUp!.value)),
-                        child: Image.asset('assets/burger-75.png'),
-                      ),
+                  ),
+                  Positioned(
+                    top: _size.height / 1.1,
+                    left: _size.width / 1.5,
+                    child: Transform.translate(
+                      offset:
+                          Offset(10.0, 10 * (1.0 - _animationImageUp!.value)),
+                      child: Image.asset('assets/burger-75.png'),
                     ),
-                    Positioned(
-                      top: _size.height / 0.9,
-                      left: _size.width / 6.1,
-                      child: Transform.translate(
-                        offset:
-                            Offset(10.0, 10 * (1.0 - _animationImageUp!.value)),
-                        child: Image.asset('assets/french-fries-75.png'),
-                      ),
+                  ),
+                  Positioned(
+                    top: _size.height / 0.9,
+                    left: _size.width / 6.1,
+                    child: Transform.translate(
+                      offset:
+                          Offset(10.0, 10 * (1.0 - _animationImageUp!.value)),
+                      child: Image.asset('assets/french-fries-75.png'),
                     ),
-                    Positioned(
-                      top: _size.height / 5.5,
-                      left: _size.width / 2.7,
-                      child: FadeTransition(
-                        opacity: _animationLogo as Animation<double>,
-                      child: Opacity(
-                        opacity: text_fade!.value,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(40.0),
-                          ),
-                          height: _size.height / 2,
-                          width: _size.width / 3.5,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset("assets/logo.gif"),
-                            ],
+                  ),
+                  Positioned(
+                    top: _size.height / 2.5,
+                    left: _size.width / 2.6,
+                    child: Container(
+                      height: _size.height / 9,
+                  
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.white,
+                      ),
+                     
+                      child: Container(
+                        margin: EdgeInsets.all(1.8),
+                        child: ClipRRect(
+                         
+                          borderRadius: BorderRadius.circular(11.0),
+                        
+                          child: Image.asset(
+                            "assets/logo.gif",
                           ),
                         ),
+
+                        
                       ),
                     ),
-                    Positioned(
-                      top: _size.height / 1.9,
-                      left: _size.width / 5,
-                      child: Opacity(
-                          opacity: text_fade!.value, child: const TextScreen()),
-                    ),
-                  ],
-                ),
+                  ),
+                  //
+                  Positioned(
+                    top: _size.height / 1.9,
+                    left: _size.width / 5,
+                    child: Opacity(
+                        opacity: text_fade!.value, child: const TextScreen()),
+                  ),
+                ],
               ),
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }
