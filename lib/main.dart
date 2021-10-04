@@ -30,8 +30,10 @@ class InitialPage extends StatefulWidget {
 }
 
 class _InitialPageState extends State<InitialPage>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   AnimationController? _animationController;
+  AnimationController? _textController;
+  Animation<double>? text_fade;
 
   Animation<double>? _animationImageUp;
   Animation<double>? _Imagecurve;
@@ -47,7 +49,31 @@ class _InitialPageState extends State<InitialPage>
       duration: const Duration(milliseconds: 2000),
     );
 
-    // ----- ------------- -------  //
+    // ----------------------- ///
+
+ 
+    _textController = AnimationController(
+      duration: Duration(seconds: 1),
+      vsync: this,
+    );
+
+    final curvedAnimation = CurvedAnimation(
+      parent: _textController as Animation<double>,
+      curve: const Interval(0.0, 1.0, curve: Curves.decelerate),
+    );
+
+     text_fade = Tween<double>(
+      begin: 0,
+      end: 1,
+    ).animate(curvedAnimation)
+      ..addListener(() {
+        setState(() {});
+      });
+
+
+
+
+    // -------------------//
 
     _Imagecurve = CurvedAnimation(
         parent: _animationController as Animation<double>,
@@ -56,7 +82,12 @@ class _InitialPageState extends State<InitialPage>
     _animationImageUp = Tween(
       begin: 0.0,
       end: 22.0,
-    ).animate(_Imagecurve!);
+    ).animate(_Imagecurve!)
+    ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          _textController!.forward();
+        } 
+      });
 
     _animationLogoCurve = CurvedAnimation(
         parent: _animationController as Animation<double>,
@@ -185,7 +216,8 @@ class _InitialPageState extends State<InitialPage>
                     Positioned(
                       top: _size.height / 1.9,
                       left: _size.width / 5,
-                      child: TextScreen(),
+                      child: Opacity(opacity: text_fade!.value,
+                      child: const TextScreen()),
                     ),
                   ],
                 ),
