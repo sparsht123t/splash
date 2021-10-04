@@ -51,7 +51,6 @@ class _InitialPageState extends State<InitialPage>
 
     // ----------------------- ///
 
- 
     _textController = AnimationController(
       duration: Duration(seconds: 1),
       vsync: this,
@@ -62,16 +61,13 @@ class _InitialPageState extends State<InitialPage>
       curve: const Interval(0.0, 1.0, curve: Curves.decelerate),
     );
 
-     text_fade = Tween<double>(
+    text_fade = Tween<double>(
       begin: 0,
       end: 1,
     ).animate(curvedAnimation)
       ..addListener(() {
         setState(() {});
       });
-
-
-
 
     // -------------------//
 
@@ -83,10 +79,10 @@ class _InitialPageState extends State<InitialPage>
       begin: 0.0,
       end: 22.0,
     ).animate(_Imagecurve!)
-    ..addStatusListener((status) {
+      ..addStatusListener((status) {
         if (status == AnimationStatus.completed) {
           _textController!.forward();
-        } 
+        }
       });
 
     _animationLogoCurve = CurvedAnimation(
@@ -201,7 +197,12 @@ class _InitialPageState extends State<InitialPage>
                       left: _size.width / 2.7,
                       child: FadeTransition(
                         opacity: _animationLogo as Animation<double>,
+                      child: Opacity(
+                        opacity: text_fade!.value,
                         child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(40.0),
+                          ),
                           height: _size.height / 2,
                           width: _size.width / 3.5,
                           child: Column(
@@ -216,8 +217,8 @@ class _InitialPageState extends State<InitialPage>
                     Positioned(
                       top: _size.height / 1.9,
                       left: _size.width / 5,
-                      child: Opacity(opacity: text_fade!.value,
-                      child: const TextScreen()),
+                      child: Opacity(
+                          opacity: text_fade!.value, child: const TextScreen()),
                     ),
                   ],
                 ),
